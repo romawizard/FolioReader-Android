@@ -424,7 +424,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             if (!config.isShowTts)
                 menu.findItem(R.id.itemTts).isVisible = false
         } catch (e: Exception) {
-            Log.e("FOLIOREADER", e.message);
+            Log.e("FOLIOREADER", e.message ?: "");
         }
 
         return true
@@ -914,11 +914,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
             val type = data.getStringExtra(TYPE)
 
-            if (type == CHAPTER_SELECTED) {
-                goToChapter(data.getStringExtra(SELECTED_CHAPTER_POSITION))
+            if (type == CHAPTER_SELECTED && data.getStringExtra(SELECTED_CHAPTER_POSITION) != null) {
+                goToChapter(data.getStringExtra(SELECTED_CHAPTER_POSITION)!!)
 
-            } else if (type == HIGHLIGHT_SELECTED) {
-                val highlightImpl = data.getParcelableExtra<HighlightImpl>(HIGHLIGHT_ITEM)
+            } else if (type == HIGHLIGHT_SELECTED && data.getParcelableExtra<HighlightImpl>(HIGHLIGHT_ITEM)!= null) {
+                val highlightImpl = data.getParcelableExtra<HighlightImpl>(HIGHLIGHT_ITEM)!!
                 currentChapterIndex = highlightImpl.pageNumber
                 mFolioPageViewPager!!.currentItem = currentChapterIndex
                 val folioPageFragment = currentFragment ?: return

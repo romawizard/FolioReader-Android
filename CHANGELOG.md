@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.7.0
+
+- Updates Android compileSdkVersion to 31.
+
 ## 0.5.4
 
 - Search API from codetoart/r2-streamer-kotlin now use window.find() instead of Rangy solution.
